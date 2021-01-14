@@ -27,12 +27,12 @@ public class LibroServiceImpl implements LibroService{
 	}
 
 	@Override
-	public List<Libro> getAll() {
+	public List<Libro> listar() {
 		return repo.findAll();
 	}
 
 	@Override
-	public Libro findById(Integer id) {
+	public Libro leerPorId(Integer id) {
 		Optional<Libro> optional = repo.findById(id);
 		if(optional.isPresent()) {
 			return optional.get();
