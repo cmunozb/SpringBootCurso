@@ -30,14 +30,14 @@ public class LibroController {
 	
 	@GetMapping
 	public ResponseEntity<List<Libro>> listar(){
-		List<Libro> lista = libroService.getAll();
+		List<Libro> lista = libroService.listar();
 		return new ResponseEntity<List<Libro>>(lista, HttpStatus.OK);
 	}
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Libro> listarId(@PathVariable("id") Integer id){
 		if(id != null && id > 0) {
-			Libro au = libroService.findById(id);
+			Libro au = libroService.leerPorId(id);
 			return new ResponseEntity<Libro>(au, HttpStatus.OK);
 		}{
 			return new ResponseEntity<Libro>(new Libro(), HttpStatus.NOT_FOUND);
@@ -58,7 +58,7 @@ public class LibroController {
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Object> delete(@PathVariable("id") Integer id){
-		Libro au = libroService.findById(id);
+		Libro au = libroService.leerPorId(id);
 		if(au.getIdLibro() == null) {
 			throw new ModeloNotFoundException("Id No Encontrado "+id);
 		}

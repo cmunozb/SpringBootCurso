@@ -30,14 +30,14 @@ public class AutorController {
 	
 	@GetMapping
 	public ResponseEntity<List<Autor>> listar(){
-		List<Autor> lista = autorService.getAll();
+		List<Autor> lista = autorService.listar();
 		return new ResponseEntity<List<Autor>>(lista, HttpStatus.OK);
 	}
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Autor> listarId(@PathVariable("id") Integer id){
 		if(id != null && id > 0) {
-			Autor au = autorService.findById(id);
+			Autor au = autorService.leerPorId(id);
 			return new ResponseEntity<Autor>(au, HttpStatus.OK);
 		}{
 			return new ResponseEntity<Autor>(new Autor(), HttpStatus.NOT_FOUND);
@@ -58,7 +58,7 @@ public class AutorController {
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Object> delete(@PathVariable("id") Integer id){
-		Autor au = autorService.findById(id);
+		Autor au = autorService.leerPorId(id);
 		if(au.getIdAutor() == null) {
 			throw new ModeloNotFoundException("Id No Encontrado "+id);
 		}

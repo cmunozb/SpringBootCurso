@@ -27,12 +27,12 @@ public class AutorServiceImpl implements AutorService {
 	}
 
 	@Override
-	public List<Autor> getAll() {
+	public List<Autor> listar() {
 		return repo.findAll();
 	}
 
 	@Override
-	public Autor findById(Integer id) {
+	public Autor leerPorId(Integer id) {
 		Optional<Autor> optional = repo.findById(id);
 		if(optional.isPresent()) {
 			return optional.get();
